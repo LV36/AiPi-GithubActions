@@ -54,3 +54,6 @@ jobs:
         draft: false
         prerelease: false
         files: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld-build_out.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
