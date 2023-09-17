@@ -44,17 +44,12 @@ jobs:
 #      with:
 #        name: AiPi-helloworld 
 #        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld-build_out.zip
-    - name: Generate release tag
-      id: tag
-      run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-        touch release.txt
-        echo "::set-output name=status::success"
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
         files: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld-build_out.zip
