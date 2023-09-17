@@ -25,15 +25,19 @@ jobs:
     - name: Clone source code
       run: |
         cd /opt
-        git clone https://github.com/Ai-Thinker-Open/AiPi-Open-Kits.git 
+        git clone https://github.com/Ai-Thinker-Open/AiPi-Open-Kits.git
+        cd /opt/AiPi-Open-Kits
+        git clone https://github.com/Ai-Thinker-Open/aithinker_Ai-M6X_SDK.git
+        
     - name: Build Firmware
       run: |
         cd /opt/AiPi-Open-Kits
         git submodule init
         git submodule update
-        . install.sh
-        .  export.sh
-        cd examples/helloworld/
+        cd /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK
+        ./install.sh
+        ./export.sh
+        cd /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/
         make     
     - name : Upload packages
       uses: actions/upload-artifact@main
