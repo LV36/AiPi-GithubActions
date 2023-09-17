@@ -32,9 +32,10 @@ jobs:
         cd AiPi-Open-Kits
         git submodule init
         git submodule update
-        cd AiPi-Eyes_weather
+        cd aithinker_Ai-M6X_SDK
         . install.sh
         . export.sh
+        cd /opt/AiPi-Open-Kits/AiPi-Eyes_weather
         make
         cd build/
         zip -r AiPi-Eyes_weather-build_out.zip ./build_out/
