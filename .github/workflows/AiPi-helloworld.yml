@@ -35,8 +35,8 @@ jobs:
         git submodule init
         git submodule update
         cd /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK
-        ./install.sh
-        ./export.sh
+        sudo ./install.sh
+        sudo ./export.sh
         cd /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/
         make     
     - name : Upload packages
