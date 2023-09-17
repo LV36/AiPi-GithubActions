@@ -43,4 +43,4 @@ jobs:
       if: always()
       with:
         name: AiPi-helloworld 
-        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld.zip
+        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld-build_out.zip
