@@ -35,10 +35,11 @@ jobs:
         . export.sh
         cd examples
         cd helloworld
-        make     
+        make
+        tar -zcvf /opt/AiPi-helloworld.gz /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/build_out/
     - name : Upload packages
       uses: actions/upload-artifact@main
       if: always()
       with:
         name: AiPi-helloworld 
-        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build_out/
+        path: /opt/AiPi-helloworld.gz
