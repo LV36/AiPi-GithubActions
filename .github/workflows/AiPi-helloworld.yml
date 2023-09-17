@@ -24,11 +24,11 @@ jobs:
         sudo apt-get install make gcc vim cmake git ninja-build -y    
     - name: Clone source code
       run: |
-        cd ~
+        cd /opt
         git clone https://github.com/Ai-Thinker-Open/AiPi-Open-Kits.git 
     - name: Build Firmware
       run: |
-        cd AiPi-Open-Kits
+        cd /opt/AiPi-Open-Kits
         git submodule init
         git submodule update
         . install.sh
@@ -40,4 +40,4 @@ jobs:
       if: always()
       with:
         name: AiPi-helloworld 
-        path: ~/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build_out/
+        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build_out/
