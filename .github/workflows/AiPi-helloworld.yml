@@ -38,9 +38,23 @@ jobs:
         make
         cd build/
         zip -r AiPi-helloworld-build_out.zip ./build_out/
-    - name : Upload packages
-      uses: actions/upload-artifact@main
-      if: always()
+#    - name : Upload packages
+#      uses: actions/upload-artifact@main
+#      if: always()
+#      with:
+#        name: AiPi-helloworld 
+#        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld-build_out.zip
+    - name: Generate release tag
+      id: tag
+      run: |
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        touch release.txt
+        echo "::set-output name=status::success"
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: AiPi-helloworld 
-        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld-build_out.zip
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
+        files: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld-build_out.zip
