@@ -36,11 +36,11 @@ jobs:
         cd examples
         cd helloworld
         make
-        cd /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/build_out/
-        zip -r AiPi-helloworld.zip helloworld_bl616.bin.ota helloworld_bl616.bin.xz.ota helloworld_bl616.bin.xz
+        cd /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/
+        zip -r AiPi-helloworld.zip /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/build_out/
     - name : Upload packages
       uses: actions/upload-artifact@main
       if: always()
       with:
         name: AiPi-helloworld 
-        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/build_out/AiPi-helloworld.zip
+        path: /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/AiPi-helloworld.zip
