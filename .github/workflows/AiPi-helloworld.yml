@@ -36,8 +36,8 @@ jobs:
         cd examples
         cd helloworld
         make
-        cd /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/
-        zip -r AiPi-helloworld.zip /opt/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build/build_out/
+        cd build/
+        zip -r AiPi-helloworld-build_out.zip ./build_out/
     - name : Upload packages
       uses: actions/upload-artifact@main
       if: always()
