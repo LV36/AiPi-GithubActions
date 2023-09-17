@@ -1,0 +1,43 @@
+name: AiPi-helloworld 云编译
+
+on: 
+  repository_dispatch:
+  workflow_dispatch:
+  release:
+    types: [published]
+  push:
+    tags:
+    - 'v*'   
+jobs:
+  build:
+    runs-on: ubuntu--latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update && sudo apt-get full-upgrade -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y
+        sudo apt-get install make gcc vim cmake git ninja-build -y    
+    - name: Clone source code
+      run: |
+        cd ~
+        git clone https://github.com/Ai-Thinker-Open/AiPi-Open-Kits.git 
+    - name: Build Firmware
+      run: |
+        cd AiPi-Open-Kits
+        git submodule init
+        git submodule update
+        . install.sh
+        .  export.sh
+        cd examples/helloworld/
+        make     
+    - name : Upload packages
+      uses: actions/upload-artifact@main
+      if: always()
+      with:
+        name: AiPi-helloworld 
+        path: ~/AiPi-Open-Kits/aithinker_Ai-M6X_SDK/examples/helloworld/build_out/
