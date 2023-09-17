@@ -32,7 +32,7 @@ jobs:
         cd AiPi-Open-Kits
         git submodule init
         git submodule update
-        cd AiPi-Radar-WakeUp
+        cd aithinker_Ai-M6X_SDK
         . install.sh
         . export.sh
         cd /opt/AiPi-Open-Kits/AiPi-Radar-WakeUp
