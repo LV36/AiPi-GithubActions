@@ -36,6 +36,10 @@ jobs:
         . install.sh
         . export.sh
         cd /opt/AiPi-Open-Kits/AiPi-SCP-2.4
+        git https://e.coding.net/axk/kaiyuanyingjian/bouffalo_sdk.git
+        cd bouffalo_sdk
+        ls
+        cd /opt/AiPi-Open-Kits/AiPi-SCP-2.4
         make
         cd build/
         zip -r AiPi-SCP-2.4-build_out.zip ./build_out/
