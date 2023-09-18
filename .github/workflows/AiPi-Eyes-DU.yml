@@ -1,4 +1,4 @@
-name: AiPi-Eyes_DU 云编译
+name: AiPi-Eyes-DU 云编译
 
 on: 
   repository_dispatch:
@@ -35,25 +35,25 @@ jobs:
         cd aithinker_Ai-M6X_SDK
         . install.sh
         . export.sh
-        cd /opt/AiPi-Open-Kits/AiPi-Eyes_DU
+        cd /opt/AiPi-Open-Kits/AiPi-Eyes-DU
         make
         cd build/
-        zip -r AiPi-Eyes_DU-build_out.zip ./build_out/
+        zip -r AiPi-Eyes-DU-build_out.zip ./build_out/
 #    - name : Upload packages
 #      uses: actions/upload-artifact@main
 #      if: always()
 #      with:
-#        name: AiPi-Eyes_DU
-#        path: /opt/AiPi-Open-Kits/AiPi-Eyes_DU/build/AiPi-Eyes_DU-build_out.zip
+#        name: AiPi-Eyes-DU
+#        path: /opt/AiPi-Open-Kits/AiPi-Eyes-DU/build/AiPi-Eyes-DU-build_out.zip
     - name: Create Release and Upload Release Asset
       uses: softprops/action-gh-release@v1
       with:
         tag_name: V1
-        name: AiPi-Eyes_DU
+        name: AiPi-Eyes-DU
         #body: TODO New Release.
         #body_path: CHANGELOG.txt
         draft: false
         prerelease: false
-        files: /opt/AiPi-Open-Kits/AiPi-Eyes_DU/build/AiPi-Eyes_DU-build_out.zip
+        files: /opt/AiPi-Open-Kits/AiPi-Eyes-DU/build/AiPi-Eyes-DU-build_out.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
