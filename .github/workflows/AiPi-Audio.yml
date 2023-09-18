@@ -36,7 +36,7 @@ jobs:
         . install.sh
         . export.sh
         cd /opt/AiPi-Open-Kits/AiPi-Audio
-        make
+        make CHIP=bl616 BOARD=bl616g0
         cd build/
         zip -r AiPi-Audio-build_out.zip ./build_out/
 #    - name : Upload packages
