@@ -43,7 +43,7 @@ jobs:
 #      uses: actions/upload-artifact@main
 #      if: always()
 #      with:
-#        name: AiPi-Radar-WakeUp 
+#        name: AiPi-Knob
 #        path: /opt/AiPi-Open-Kits/AiPi-Knob/build/AiPi-Radar-WakeUp-build_out.zip
     - name: Create Release and Upload Release Asset
       uses: softprops/action-gh-release@v1
