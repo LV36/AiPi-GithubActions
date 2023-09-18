@@ -35,25 +35,25 @@ jobs:
         cd aithinker_Ai-M6X_SDK
         . install.sh
         . export.sh
-        cd /opt/AiPi-Open-Kits/AiPi-SCP-SmartCtrl
+        cd /opt/AiPi-Open-Kits/AiPi-SCP_SmartCtrl
         make
         cd build/
-        zip -r AiPi-SCP-SmartCtrl-build_out.zip ./build_out/
+        zip -r AiPi-SCP_SmartCtrl-build_out.zip ./build_out/
 #    - name : Upload packages
 #      uses: actions/upload-artifact@main
 #      if: always()
 #      with:
-#        name: AiPi-SCP-SmartCtrl
-#        path: /opt/AiPi-Open-Kits/AiPi-SCP-SmartCtrl/build/AiPi-SCP-SmartCtrl-build_out.zip
+#        name: AiPi-SCP_SmartCtrl
+#        path: /opt/AiPi-Open-Kits/AiPi-SCP_SmartCtrl/build/AiPi-SCP_SmartCtrl-build_out.zip
     - name: Create Release and Upload Release Asset
       uses: softprops/action-gh-release@v1
       with:
         tag_name: V1
-        name: AiPi-SCP-SmartCtrl
+        name: AiPi-SCP_SmartCtrl
         #body: TODO New Release.
         #body_path: CHANGELOG.txt
         draft: false
         prerelease: false
-        files: /opt/AiPi-Open-Kits/AiPi-SCP-SmartCtrl/build/AiPi-SCP-SmartCtrl-build_out.zip
+        files: /opt/AiPi-Open-Kits/AiPi-SCP_SmartCtrl/build/AiPi-SCP-SmartCtrl_build_out.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
