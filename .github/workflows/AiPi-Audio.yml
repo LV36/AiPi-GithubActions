@@ -1,0 +1,59 @@
+name: AiPi-Audio 云编译
+
+on: 
+  repository_dispatch:
+  workflow_dispatch:
+  release:
+    types: [published]
+  push:
+    tags:
+    - 'v*'   
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update && sudo apt-get full-upgrade -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y
+        sudo apt-get install make gcc vim cmake git ninja-build -y
+        sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev -y
+    - name: Clone source code and Build Firmware
+      run: |
+        cd /opt
+        git clone https://github.com/Ai-Thinker-Open/AiPi-Open-Kits.git
+        cd AiPi-Open-Kits
+        git submodule init
+        git submodule update
+        cd aithinker_Ai-M6X_SDK
+        . install.sh
+        . export.sh
+        cd /opt/AiPi-Open-Kits/AiPi-Audio
+        make
+        cd build/
+        zip -r AiPi-Audio-build_out.zip ./build_out/
+#    - name : Upload packages
+#      uses: actions/upload-artifact@main
+#      if: always()
+#      with:
+#        name: AiPi-Audio
+#        path: /opt/AiPi-Open-Kits/AiPi-Audio/build/AiPi-Audio-build_out.zip
+    - name: Create Release and Upload Release Asset
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: V1
+        name: AiPi-Audio
+        #body: TODO New Release.
+        #body_path: CHANGELOG.txt
+        draft: false
+        prerelease: false
+        files: /opt/AiPi-Open-Kits/AiPi-Audio/build/AiPi-Audio-build_out.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
