@@ -1,4 +1,4 @@
-name: AiPi-SCP-SmartCtrl 云编译
+name: AiPi-SCP_SmartCtrl 云编译
 
 on: 
   repository_dispatch:
